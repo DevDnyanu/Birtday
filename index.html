@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Love!</title>
+    <style>
+        /* Main Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #f9d1d1, #d3cce3); /* Soft pink to lavender */
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            text-align: center;
+            max-width: 650px;
+            position: relative;
+            transition: all 0.3s ease; /* Smooth transition on hover */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Floating effect on hover */
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem; /* Increased font size */
+            color: #ff6b8a; /* Soft coral pink */
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        h1:hover {
+            color: #ff4766; /* Slightly darker on hover */
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .emoji {
+            font-size: 2rem; /* Larger emoji */
+        }
+
+        img {
+            border-radius: 15px;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Softer shadow for images */
+            margin-bottom: 15px;
+        }
+
+        .cake-image {
+            margin-top: 20px;
+            width: 150px;
+            border-radius: 50%;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff9966, #ff5e62); /* Gradient button */
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 94, 98, 0.4);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+        }
+
+        /* Confetti Canvas */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Animation Audio */
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Happy Birthday, Love Anu</h1>
+        <p>"Happy Birthday, my darling! Even though I’m not there to hold you close, my love for you travels across every mile. You are my sunshine, and I wish you the happiest day filled with laughter and love." 💖💖💖💖💖💖💖💖</p>
+        <div class="emoji">💖 🎂 🎉</div>
+
+        <!-- Cake Image -->
+        <div>
+            <img src="
+            https://images.pexels.com/photos/140831/pexels-photo-140831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+            
+            " alt="Birthday Cake" class="cake-image">
+        </div>
+
+        <!-- Surprise Button -->
+        <div class="heart-container">
+            <button id="reveal-button">Tap for a Surprise! 💌</button>
+        </div>
+
+        <!-- Confetti Animation -->
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+
+    <!-- Confetti Animation Script -->
+    <script>
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        const confettiColors = ['#ff6b6b', '#ffe66d', '#ff9a9e', '#d4a5a5'];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let confetti = [];
+        for (let i = 0; i < 100; i++) {
+            confetti.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                size: Math.random() * 10 + 2,
+                speedX: Math.random() * 2 - 1,
+                speedY: Math.random() * 3 + 2,
+            });
+        }
+
+        function drawConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < confetti.length; i++) {
+                let p = confetti[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.y > canvas.height) {
+                    p.y = 0;
+                    p.x = Math.random() * canvas.width;
+                }
+            }
+            requestAnimationFrame(drawConfetti);
+        }
+
+        drawConfetti();
+
+        // Button click event for surprise
+        document.getElementById('reveal-button').addEventListener('click', () => {
+            alert("My love for you grows stronger every day, and I promise to cherish every moment we share. You’re not just my girlfriend, you're my soulmate, my forever.🎂🎂🎂💕💕💕💖💖💖💖");
+        });
+    </script>
+
+</body>
+</html>
